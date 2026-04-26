@@ -1,0 +1,15 @@
+<div class="min-h-screen bg-gray-50 py-8">
+  <div class="max-w-2xl mx-auto px-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-8">
+      <%= @match.new_record? ? "New Match" : "Edit Match" %>
+    </h1>
+
+    <div class="bg-white rounded-2xl shadow p-8">
+      <%= render "form" %>
+    </div>
+
+    <div class="mt-6 text-center">
+      <%= link_to "← Back to Matches", matches_path, class: "text-gray-500 hover:text-gray-700" %>
+    </div>
+  </div>
+</div>

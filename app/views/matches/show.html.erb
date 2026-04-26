@@ -1,0 +1,26 @@
+<div class="min-h-screen bg-gray-50 py-8">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="flex justify-between items-start mb-8">
+      <div>
+        <h1 class="text-4xl font-bold text-gray-900"><%= @match.title %></h1>
+        <p class="text-gray-600 mt-2"><%= @match.opponent %> — <%= @match.date.strftime("%d %B %Y") %></p>
+      </div>
+      <div class="flex gap-3">
+        <%= link_to "Edit", edit_match_path(@match), class: "px-5 py-2.5 bg-white border border-gray-300 rounded-xl hover:bg-gray-50" %>
+        <%= link_to "Delete", match_path(@match), data: { turbo_confirm: "Delete this match?", turbo_method: :delete }, 
+                    class: "px-5 py-2.5 bg-red-50 text-red-600 rounded-xl hover:bg-red-100" %>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow p-8 mb-10">
+      <p><strong>Team:</strong> <%= @match.team %></p>
+      <% if @match.notes.present? %>
+        <p class="mt-4"><strong>Notes:</strong> <%= @match.notes %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mt-6 text-center">
+    <%= link_to "← Back to Matches", matches_path, class: "text-gray-500 hover:text-gray-700" %>
+  </div>
+</div>

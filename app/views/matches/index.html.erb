@@ -1,0 +1,42 @@
+<div class="min-h-screen bg-gray-50 py-8">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex justify-between items-center mb-8">
+      <div>
+        <h1 class="text-4xl font-bold text-gray-900">Matches</h1>
+      </div>
+      <%= link_to "New Match", new_match_path, class: "bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium shadow-sm" %>
+    </div>
+
+    <% if @matches.present? %>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% @matches.each do |match| %>
+          <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all border border-gray-100 overflow-hidden">
+            <div class="p-6">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="font-semibold text-xl text-gray-900"><%= match.title %></h3>
+                  <p class="text-gray-600 mt-1"><%= match.opponent %> • <%= match.date.strftime("%d %b %Y") if match.date %></p>
+                </div>
+              </div>
+
+              <% if match.notes.present? %>
+                <p class="text-sm text-gray-500 mt-4 line-clamp-2"><%= match.notes %></p>
+              <% end %>
+            </div>
+
+            <div class="border-t border-gray-100 bg-gray-50 px-6 py-4 flex gap-3">
+              <%= link_to "View", match_path(match), class: "flex-1 text-center bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-2.5 rounded-xl text-sm font-medium" %>
+              <%= link_to "Edit", edit_match_path(match), class: "flex-1 text-center bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-2.5 rounded-xl text-sm font-medium" %>
+              <%= link_to "Delete", match_path(match), data: { turbo_confirm: "Delete this match ?", turbo_method: :delete }, class: "flex-1 text-center bg-red-50 hover:bg-red-100 text-red-600 py-2.5 rounded-xl text-sm font-medium" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="bg-white rounded-2xl shadow p-12 text-center">
+        <p class="text-gray-500 text-lg">No matches yet.</p>
+        <p class="text-gray-400 mt-2">Create your first rugby match to get started.</p>
+      </div>
+    <% end %>
+  </div>
+</div>

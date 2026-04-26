@@ -1,0 +1,36 @@
+<div class="min-h-screen bg-gray-50 py-8">
+  <div class="max-w-7xl mx-auto px-6">
+    <h1 class="text-4xl font-bold text-gray-900 mb-2">Rugby Matches</h1>
+    <p class="text-gray-600 mb-8">Demo for Framesports - Rugby Video Analysis Platform</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+      <div class="bg-white p-6 rounded-2xl shadow">
+        <h3 class="text-sm font-medium text-gray-500">Total Matches</h3>
+        <p class="text-4xl font-bold text-blue-600 mt-2"><%= @total_matches %></p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow">
+        <h3 class="text-sm font-medium text-gray-500">Recent Activity</h3>
+        <p class="text-4xl font-bold text-blue-600 mt-2"><%= @recent_matches.size %></p>
+      </div>
+    </div>
+
+      <%= link_to "New Match", new_match_path, class: "bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium shadow-sm" %>
+      <%= link_to "View All Matches", matches_path, class: "bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-6 py-3 rounded-xl font-medium" %>
+
+    <h2 class="text-2xl font-semibold mb-6">Recent Matches</h2>
+    
+    <% if @recent_matches.present? %>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% @recent_matches.each do |match| %>
+          <div class="bg-white p-6 rounded-2xl shadow hover:shadow-md transition">
+            <h3 class="font-semibold text-lg"><%= match.title %></h3>
+            <p class="text-gray-600"><%= match.opponent %> • <%= match.date %></p>
+            <%= link_to "View Details", match_path(match), class: "text-blue-600 hover:underline mt-4 inline-block" %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-gray-500 italic">No matches yet. Create your first one above!</p>
+    <% end %>
+  </div>
+</div>
